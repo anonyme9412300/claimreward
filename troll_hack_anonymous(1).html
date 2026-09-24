@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SECURITY BREACH</title>
+<style>
+*{box-sizing:border-box} body{margin:0;background:#020202;color:#00ff66;font-family:monospace;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+body:before{content:"";position:fixed;inset:0;background:repeating-linear-gradient(0deg,rgba(0,255,100,.035) 0 1px,transparent 1px 4px);pointer-events:none}
+.box{width:min(760px,92%);text-align:center;padding:28px;border:1px solid #17351f;background:rgba(0,0,0,.88);box-shadow:0 0 35px rgba(0,255,80,.12)}
+h1{font-size:clamp(28px,7vw,58px);color:#ff2020;text-shadow:0 0 12px #f00;margin:5px 0 12px;animation:blink 1s infinite}
+.alert{color:#ff3333;font-size:15px}.status{font-size:18px;margin:26px 0 12px;min-height:25px}.bar{height:20px;border:1px solid #00ff66;overflow:hidden}.fill{height:100%;width:0;background:#00ff66;box-shadow:0 0 15px #00ff66;transition:width .7s}.pct{margin-top:10px;color:#aaa}
+.mask{display:none;margin:24px auto 8px;width:170px;filter:drop-shadow(0 0 18px #fff)}
+.final{display:none;color:#ff3333;font-size:17px;line-height:1.5}
+@keyframes blink{50%{opacity:.65}}
+</style>
+</head>
+<body>
+<div class="box">
+<div class="alert">⚠ SYSTÈME COMPROMIS — ACCÈS NON AUTORISÉ ⚠</div>
+<h1>VOUS VOUS ÊTES FAIT HACKER</h1>
+<div id="status" class="status">Initialisation de la connexion...</div>
+<div class="bar"><div id="fill" class="fill"></div></div>
+<div id="pct" class="pct">0%</div>
+
+<svg id="mask" class="mask" viewBox="0 0 200 220" aria-label="masque stylisé">
+<path fill="#eee" d="M100 8C42 8 22 48 28 103c5 48 34 91 72 103 38-12 67-55 72-103C178 48 158 8 100 8z"/>
+<path fill="#111" d="M43 76c18-19 37-18 57 1-21 6-38 10-57-1zm114 0c-18-19-37-18-57 1 21 6 38 10 57-1z"/>
+<path fill="#111" d="M92 91h16l-4 47-4 8-4-8z"/>
+<path fill="none" stroke="#111" stroke-width="7" d="M55 150c26 22 64 22 90 0"/>
+<path fill="none" stroke="#111" stroke-width="4" d="M74 163l-7 13m27-10-2 15m34-15 7 13m-29-10v16"/>
+</svg>
+
+<div id="final" class="final">ACCÈS MAINTENU.<br>TRANSMISSION TERMINÉE.<br><span style="color:#777">SESSION FERMÉE</span></div>
+</div>
+<script>
+const steps=[
+"Connexion au terminal distant...",
+"Pénétration de la galerie...",
+"Récolte des informations...",
+"Analyse des fichiers personnels...",
+"Indexation des médias...",
+"Extraction des données...",
+"Synchronisation avec le serveur...",
+"Nettoyage des traces..."
+];
+let i=0,p=0;
+const status=document.getElementById("status"),fill=document.getElementById("fill"),pct=document.getElementById("pct");
+function run(){
+ if(i<steps.length){
+   status.textContent=steps[i++];
+   p=Math.min(97,p+Math.floor(Math.random()*12)+8);
+   fill.style.width=p+"%"; pct.textContent=p+"%";
+   setTimeout(run,850+Math.random()*500);
+ }else{
+   fill.style.width="100%"; pct.textContent="100%";
+   status.textContent="TRANSMISSION TERMINÉE";
+   document.getElementById("mask").style.display="block";
+   document.getElementById("final").style.display="block";
+ }
+}
+setTimeout(run,900);
+</script>
+</body>
+</html>
